@@ -1,5 +1,6 @@
 'use client';
 
+import { registerUser } from '@/app/action/authActions';
 import { RegisterSchema, registerSchema } from '@/lib/schemas/registerSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Card, CardBody, CardHeader, Input } from '@nextui-org/react';
@@ -17,8 +18,9 @@ const RegisterForm = () => {
     mode: 'onTouched',
   });
 
-  const onSubmit = (data: RegisterSchema) => {
-    console.log(data);
+  const onSubmit = async (data: RegisterSchema) => {
+    const result = await registerUser(data);
+    console.log({ result });
   };
 
   return (
